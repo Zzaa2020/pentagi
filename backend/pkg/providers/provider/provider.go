@@ -17,7 +17,15 @@ const (
 	ProviderOpenAI    ProviderType = "openai"
 	ProviderCustom    ProviderType = "custom"
 	ProviderAnthropic ProviderType = "anthropic"
+	ProviderOllama    ProviderType = "ollama"
 )
+
+var AllProviderTypes = []ProviderType{
+	ProviderOpenAI,
+	ProviderCustom,
+	ProviderAnthropic,
+	ProviderOllama,
+}
 
 type ProviderOptionsType string
 
@@ -35,6 +43,21 @@ const (
 	OptionsTypePentester  ProviderOptionsType = "pentester"
 	OptionsTypeReflector  ProviderOptionsType = "reflector"
 )
+
+var AllProviderOptionsTypes = []ProviderOptionsType{
+	OptionsTypeAgent,
+	OptionsTypeSimple,
+	OptionsTypeSimpleJSON,
+	OptionsTypeAdviser,
+	OptionsTypeGenerator,
+	OptionsTypeRefiner,
+	OptionsTypeSearcher,
+	OptionsTypeEnricher,
+	OptionsTypeCoder,
+	OptionsTypeInstaller,
+	OptionsTypePentester,
+	OptionsTypeReflector,
+}
 
 var ErrInvalidProviderOptionsType = fmt.Errorf("provider options type not found")
 

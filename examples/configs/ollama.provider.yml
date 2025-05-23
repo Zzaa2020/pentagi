@@ -1,0 +1,64 @@
+# Ollama Provider Configuration
+
+# Note: The top-level "model" field as a default is not directly supported
+# by the current LoadConfig structure in ollama.go.
+# Defaults are applied if a specific option type is missing or if the config file itself is missing.
+# Each option type below should explicitly define its model.
+
+simple:
+  model: "dolphin3:latest"
+  temperature: 0.5
+  top_p: 0.5
+  # max_tokens: 2048 # Optional: example parameter
+
+simple_json:
+  model: "dolphin3:latest"
+  temperature: 0.5
+  top_p: 0.5
+  json: true # To enable JSON mode, langchaingo's WithJSONMode() is used
+  # response_mime_type: "application/json" # Alternative for some models if json:true isn't enough
+
+agent:
+  model: "qwen3:30b-a3b"
+  temperature: 0.7
+  top_p: 0.8
+
+generator:
+  model: "qwen3:32b"
+  temperature: 0.8
+  top_p: 0.9
+
+refiner:
+  model: "dolphin3:latest"
+  temperature: 0.6
+  top_p: 0.7
+
+adviser:
+  model: "qwen3:30b-a3b"
+  temperature: 0.9 # Higher temperature for more creative advice
+  # n: 1 # Number of completions
+
+reflector:
+  model: "qwen3:30b-a3b"
+  temperature: 0.5
+
+searcher:
+  model: "dolphin3:latest"
+  temperature: 0.6
+
+enricher:
+  model: "qwen3:32b"
+  temperature: 0.7
+
+coder:
+  model: "qwen3:30b-a3b" # Often larger models are better for coding
+  temperature: 0.4
+  # stop_sequences: ["\n```"] # Example of stop sequences
+
+installer:
+  model: "dolphin3:latest"
+  temperature: 0.3
+
+pentester:
+  model: "qwen3:32b" # A capable model for specialized tasks
+  temperature: 0.6

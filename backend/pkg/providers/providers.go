@@ -12,8 +12,9 @@ import (
 	"pentagi/pkg/providers/anthropic"
 	"pentagi/pkg/providers/custom"
 	"pentagi/pkg/providers/embeddings"
+	"pentagi/pkg/providers/ollama"
 	"pentagi/pkg/providers/openai"
-	"pentagi/pkg/providers/provider"
+	providerpkg "pentagi/pkg/providers/provider" // Renamed for clarity
 	"pentagi/pkg/templates"
 	"pentagi/pkg/tools"
 
@@ -88,6 +89,17 @@ func NewProviderController(cfg *config.Config, docker docker.DockerClient) (Prov
 		}
 
 		providers[provider.Type()] = provider
+	}
+
+	if cfg.OllamaServerURL != "" {
+		provider, err := ollamaprovider.New(cfg)
+		if err != nil {
+			// Log the error but don't fail if other providers might be available
+			logrus.WithError(err).Errorf("failed to create ollama provider")
+		} else if provider != nil { // New returns nil, nil if not configured
+			providers[provider.Type()] = provider
+			logrus.Infof("Ollama provider initialized with default model: %s", provider.Model(providerpkg.OptionsTypeSimple))
+		}
 	}
 
 	return &providerController{

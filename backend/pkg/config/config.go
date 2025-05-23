@@ -64,6 +64,10 @@ type Config struct {
 	LLMServerModel  string `env:"LLM_SERVER_MODEL"`
 	LLMServerConfig string `env:"LLM_SERVER_CONFIG_PATH"`
 
+	// Ollama
+	OllamaServerURL  string `env:"OLLAMA_SERVER_URL"`
+	OllamaConfigPath string `env:"OLLAMA_CONFIG_PATH"`
+
 	// Google search engine
 	GoogleAPIKey string `env:"GOOGLE_API_KEY"`
 	GoogleCXKey  string `env:"GOOGLE_CX_KEY"`
